@@ -25,7 +25,9 @@ namespace dbKP_football
         public string C_NAME { get; set; }
         public string C_NATIONALITY { get; set; }
         public System.DateTime C_DATEOFBIRTH { get; set; }
+        public int L_ID { get; set; }
     
+        public virtual leagues leagues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<teams> teams { get; set; }
     }

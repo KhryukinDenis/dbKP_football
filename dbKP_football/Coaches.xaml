@@ -66,18 +66,18 @@
                 <DataGrid x:Name="C_dataGrid" Margin="0,10,15,15" ColumnWidth="*" 
                            AutoGenerateColumns="False" FontFamily="/dbKP_football;component/Resources/#Champions" Background="White" Foreground="DarkBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Фамилия"/>
-                        <DataGridTextColumn Header="Имя"/>
-                        <DataGridTextColumn Header="Гражданство"/>
-                        <DataGridTextColumn Header="Дата рождения"/>
+                        <DataGridTextColumn x:Name="surname" Header="Фамилия"/>
+                        <DataGridTextColumn x:Name="name" Header="Имя"/>
+                        <DataGridTextColumn x:Name="nation" Header="Гражданство"/>
+                        <DataGridTextColumn x:Name="birthdate" Header="Дата рождения"/>
                         <DataGridTemplateColumn Header="Действия">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="CChange_button" Margin="0,0,5,0"
+                                        <Button x:Name="CChange_button1" Margin="0,0,5,0"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"
-                                        Click="CChange_button_Click"
+                                        Click="CChange_button1_Click"
                                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                                             <materialDesign:PackIcon
                                                 Kind="BorderColor" />

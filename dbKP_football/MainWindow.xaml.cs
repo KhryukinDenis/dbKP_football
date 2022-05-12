@@ -17,7 +17,7 @@ namespace dbKP_football
         {
             InitializeComponent();
             foreach (var item in db.leagues)
-                League_ComboBox.Items.Add(item);
+            League_ComboBox.Items.Add(item);
             League_ComboBox.DisplayMemberPath = "L_NAME";
             db.leagues.Load();
 
@@ -27,31 +27,51 @@ namespace dbKP_football
 
         private void Teams_buttonClick(object sender, RoutedEventArgs e)
         {
-            var teams = new Teams();
-            teams.Show();
+            if (League_ComboBox.SelectedItem == null)
+                MessageBox.Show("Выберите лигу!","Ошибка");
+            else
+            {
+                var teams = new Teams();
+                teams.Show();
+            }
 
         }
 
         private void Players_buttonClick(object sender, RoutedEventArgs e)
         {
-            var footPlayers = new FootPlayers();
-            footPlayers.Show();
+            if (League_ComboBox.SelectedItem == null)
+                MessageBox.Show("Выберите лигу!");
+            else
+            {
+                var footPlayers = new FootPlayers();
+                footPlayers.Show();
+            }
         }
 
         private void Stadiums_buttonClick(object sender, RoutedEventArgs e)
         {
-            var stadiums = new Stadiums();
-            stadiums.Show();
+            if (League_ComboBox.SelectedItem == null)
+                MessageBox.Show("Выберите лигу!");
+            else
+            {
+                var stadiums = new Stadiums();
+                stadiums.Show();
+            }
         }
 
         private void Coaches_buttonClick(object sender, RoutedEventArgs e)
         {
-            var coaches = new Coaches();
-            coaches.Show();
+            if (League_ComboBox.SelectedItem == null)
+                MessageBox.Show("Выберите лигу!");
+            else
+            {
+                var coaches = new Coaches();
+                coaches.Show();
+            }
         }
 
         private void Aboat_buttonClick(object sender, RoutedEventArgs e)
-        {
+        { 
             var about = new AboutTheProgramm();
             about.Show();
         }

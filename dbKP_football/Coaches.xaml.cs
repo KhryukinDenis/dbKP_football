@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 
 namespace dbKP_football
 {
@@ -14,7 +16,11 @@ namespace dbKP_football
         {
             InitializeComponent();
             db.coaches.Load();
-            C_dataGrid.ItemsSource = db.coaches.Local.ToBindingList();
+            surname.Binding = new Binding("C_SURNAME");
+            name.Binding = new Binding("C_NAME");
+            nation.Binding = new Binding("C_NATIONALITY");
+            birthdate.Binding = new Binding("C_DATEOFBIRTH");
+            refresh();
         }
         private db_KP_FootballEntities db = new db_KP_FootballEntities();
 
@@ -25,15 +31,16 @@ namespace dbKP_football
                 C_SURNAME = textBox_surnameCoaches.Text,
                 C_NAME = textBox_nameCoaches.Text,
                 C_NATIONALITY = textBox_nationalityCoaches.Text,
-                C_DATEOFBIRTH = (DateTime)datePicker_dateOfBirthCoaches.SelectedDate
+                C_DATEOFBIRTH = (DateTime)datePicker_dateOfBirthCoaches.SelectedDate,
+                L_ID = Data.League_Id
             };
-            //if
 
-            C_dataGrid.Items.Refresh();
             db.SaveChanges();
+            Clear();
+            refresh();
         }
 
-        private void TClear_button4_Click(object sender, RoutedEventArgs e)
+        private void Clear()
         {
             textBox_surnameCoaches.Clear();
             textBox_nameCoaches.Clear();
@@ -41,14 +48,31 @@ namespace dbKP_football
             datePicker_dateOfBirthCoaches.SelectedDate = null;
         }
 
-        private void CChange_button_Click(object sender, RoutedEventArgs e)
+        private void TClear_button4_Click(object sender, RoutedEventArgs e)
+        {
+            Clear();
+        }
+
+        private void CChange_button1_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
         private void CDelete_button_Click(object sender, RoutedEventArgs e)
         {
+            var delCoa = db.coaches.Find((C_dataGrid.SelectedItem as coaches).C_ID);
+            db.coaches.Remove(delCoa);
+            db.SaveChanges();
+            refresh();
+        }
 
+        private void refresh()
+        {
+            C_dataGrid.Items.Clear();
+            SqlParameter l_id = new SqlParameter("@l_id", Data.League_Id);
+            foreach (var i in db.coaches.SqlQuery("select * from coaches where L_ID = @l_id", l_id))
+            C_dataGrid.Items.Add(i);
+            C_dataGrid.Items.Refresh();
         }
     }
 }

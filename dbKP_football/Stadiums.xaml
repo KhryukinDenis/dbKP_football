@@ -73,10 +73,10 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="SChange_button" Margin="0,0,5,0"
+                                        <Button x:Name="SChange_button1" Margin="0,0,5,0"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"
-                                        Click="SChange_button_Click"
+                                        Click="SChange_button1_Click"
                                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                                             <materialDesign:PackIcon
                                                 Kind="BorderColor" />

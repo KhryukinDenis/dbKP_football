@@ -56,7 +56,7 @@ namespace dbKP_football
 
         private void TChange_button_Click(object sender, RoutedEventArgs e)
         {
-
+            var changeTeam = db.teams.Find((T_dataGrid.SelectedItem as teams).T_ID);
         }
 
         private void TDelete_button_Click(object sender, RoutedEventArgs e)
