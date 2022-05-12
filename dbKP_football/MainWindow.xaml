@@ -1,0 +1,94 @@
+﻿<Window x:Class="dbKP_football.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dbKP_football"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Главное меню" Width="270" Height="480" Visibility="Visible" Cursor="Hand" FontFamily="/dbKP_football;component/#Champions" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Resources/I_mainWindow.png" >
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/F_mainWindow.jpg"/>
+    </Window.Background>
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
+        <StackPanel HorizontalAlignment="Center" Margin="0,0,0,20" Width="150" Height="400">
+            
+            <ComboBox
+                     x:Name="League_ComboBox" Margin="0,8"  ItemsSource="{Binding leagues}"
+                     SelectedItem="{Binding SelectedLeague,UpdateSourceTrigger=PropertyChanged}"
+                     DisplayMemberPath="L_NAME"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="10"
+                     Style="{StaticResource MaterialDesignFilledComboBox}"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                     materialDesign:HintAssist.Hint="Лига"  Width="150"
+                     FontFamily="/dbKP_football;component/Resources/#Champions" FontSize="16" FontWeight="Bold" 
+                     Background="White" BorderBrush="#FF010E80" Foreground="#FF010E80" >
+            </ComboBox>
+
+            <Button
+                    x:Name="Teams_button" Click="Teams_buttonClick"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Margin="0,20,0,0"
+                    Foreground="White" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5" FontSize="16" FontWeight="Bold" Content="Команды" BorderBrush="White" />
+
+            
+            <Button
+                    x:Name="Players_button" Click="Players_buttonClick"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Margin="0,20,0,0"
+                    Foreground="White" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5"  FontSize="16" FontWeight="Bold" Content="Футболисты" BorderBrush="White" />
+
+            <Button
+                    x:Name="Stadiums_button" Click="Stadiums_buttonClick"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Margin="0,15,0,0" 
+                    Foreground="White" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5"  FontSize="16" FontWeight="Bold" Content="Стадионы" BorderBrush="White" />
+
+            <Button
+                    x:Name="Coaches_button" Click="Coaches_buttonClick"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Margin="0,20,0,0"
+                    Foreground="White" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5"  FontSize="16" FontWeight="Bold" Content="Гл. тренеры" BorderBrush="White" />
+
+            <Button
+                    x:Name="Aboat_button" Click="Aboat_buttonClick"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Margin="0,20,0,0" Width="120" Height="30"
+                    Foreground="#FF010E80" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5"  FontSize="14" FontWeight="Bold" Content="О программе" Background="White" BorderBrush="#FF010E80" />
+
+            <Button
+                    x:Name="Exit_button" Click="Exit_buttonClick"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Margin="0,15,0,0" Width="120" Height="30"
+                    Foreground="#FF010E80" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5"  FontSize="14" FontWeight="Bold" Content="Выход" BorderBrush="#FF010E80" Background="White" />
+        </StackPanel>
+    </Grid>
+</Window>

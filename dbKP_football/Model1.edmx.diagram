@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52959e2136ec4835a89c87bd5160fd30" Name="Diagram1">
+        <EntityTypeShape EntityType="db_KP_FootballModel.coaches" Width="1.5" PointX="6.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.footplayers" Width="1.5" PointX="8.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.leagues" Width="1.5" PointX="1.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.stadiums" Width="1.5" PointX="6.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.teams" Width="1.5" PointX="4.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__teams__C_ID__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__footplaye__FP_WO__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__teams__L_ID__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__teams__S_ID__52593CB8" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

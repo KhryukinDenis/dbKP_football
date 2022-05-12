@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище db_KP_FootballModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="coaches">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_SURNAME" Type="nvarchar" MaxLength="30" />
+          <Property Name="C_NAME" Type="nvarchar" MaxLength="30" />
+          <Property Name="C_NATIONALITY" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="C_DATEOFBIRTH" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="footplayers">
+          <Key>
+            <PropertyRef Name="FP_ID" />
+          </Key>
+          <Property Name="FP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="T_ID" Type="int" Nullable="false" />
+          <Property Name="FP_SURNAME" Type="nvarchar" MaxLength="40" />
+          <Property Name="FP_NAME" Type="nvarchar" MaxLength="40" />
+          <Property Name="FP_DATEOFBIRTH" Type="date" Nullable="false" />
+          <Property Name="FP_NATIONALITY" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="FP_POSITION" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="FP_TEAMNUMBER" Type="int" Nullable="false" />
+          <Property Name="FP_GROWTH" Type="float" Nullable="false" />
+          <Property Name="FP_WEIGHT" Type="float" Nullable="false" />
+          <Property Name="FP_WORKINGLEG" Type="nvarchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="leagues">
+          <Key>
+            <PropertyRef Name="L_ID" />
+          </Key>
+          <Property Name="L_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="L_NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="L_COUNTRY" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stadiums">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_NAME" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="S_CAPACITY" Type="int" Nullable="false" />
+          <Property Name="S_YEAROPENING" Type="int" Nullable="false" />
+          <Property Name="S_LOCATIONCITY" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="teams">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="L_ID" Type="int" Nullable="false" />
+          <Property Name="T_NAME" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="T_TOURNIER" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="T_QUAFOOTPLAYERS" Type="int" Nullable="false" />
+          <Property Name="T_YEAROFFOUND" Type="int" Nullable="false" />
+          <Property Name="S_ID" Type="int" Nullable="false" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__footplaye__FP_WO__5629CD9C">
+          <End Role="teams" Type="Self.teams" Multiplicity="1" />
+          <End Role="footplayers" Type="Self.footplayers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="T_ID" />
+            </Principal>
+            <Dependent Role="footplayers">
+              <PropertyRef Name="T_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__teams__C_ID__534D60F1">
+          <End Role="coaches" Type="Self.coaches" Multiplicity="1" />
+          <End Role="teams" Type="Self.teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coaches">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="teams">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__teams__L_ID__5165187F">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+          <End Role="teams" Type="Self.teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="leagues">
+              <PropertyRef Name="L_ID" />
+            </Principal>
+            <Dependent Role="teams">
+              <PropertyRef Name="L_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__teams__S_ID__52593CB8">
+          <End Role="stadiums" Type="Self.stadiums" Multiplicity="1" />
+          <End Role="teams" Type="Self.teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stadiums">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="teams">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище db_KP_FootballModelContainer">
+          <EntitySet Name="coaches" EntityType="Self.coaches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="footplayers" EntityType="Self.footplayers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="leagues" EntityType="Self.leagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stadiums" EntityType="Self.stadiums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="teams" EntityType="Self.teams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__footplaye__FP_WO__5629CD9C" Association="Self.FK__footplaye__FP_WO__5629CD9C">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="footplayers" EntitySet="footplayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__teams__C_ID__534D60F1" Association="Self.FK__teams__C_ID__534D60F1">
+            <End Role="coaches" EntitySet="coaches" />
+            <End Role="teams" EntitySet="teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__teams__L_ID__5165187F" Association="Self.FK__teams__L_ID__5165187F">
+            <End Role="leagues" EntitySet="leagues" />
+            <End Role="teams" EntitySet="teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__teams__S_ID__52593CB8" Association="Self.FK__teams__S_ID__52593CB8">
+            <End Role="stadiums" EntitySet="stadiums" />
+            <End Role="teams" EntitySet="teams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_KP_FootballModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="coaches">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_SURNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="C_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="C_NATIONALITY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C_DATEOFBIRTH" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__teams__C_ID__534D60F1" FromRole="coaches" ToRole="teams" />
+        </EntityType>
+        <EntityType Name="footplayers">
+          <Key>
+            <PropertyRef Name="FP_ID" />
+          </Key>
+          <Property Name="FP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="T_ID" Type="Int32" Nullable="false" />
+          <Property Name="FP_SURNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="FP_NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="FP_DATEOFBIRTH" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FP_NATIONALITY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FP_POSITION" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FP_TEAMNUMBER" Type="Int32" Nullable="false" />
+          <Property Name="FP_GROWTH" Type="Double" Nullable="false" />
+          <Property Name="FP_WEIGHT" Type="Double" Nullable="false" />
+          <Property Name="FP_WORKINGLEG" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__footplaye__FP_WO__5629CD9C" FromRole="footplayers" ToRole="teams" />
+        </EntityType>
+        <EntityType Name="leagues">
+          <Key>
+            <PropertyRef Name="L_ID" />
+          </Key>
+          <Property Name="L_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="L_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="L_COUNTRY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__teams__L_ID__5165187F" FromRole="leagues" ToRole="teams" />
+        </EntityType>
+        <EntityType Name="stadiums">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="S_CAPACITY" Type="Int32" Nullable="false" />
+          <Property Name="S_YEAROPENING" Type="Int32" Nullable="false" />
+          <Property Name="S_LOCATIONCITY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__teams__S_ID__52593CB8" FromRole="stadiums" ToRole="teams" />
+        </EntityType>
+        <EntityType Name="teams">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="L_ID" Type="Int32" Nullable="false" />
+          <Property Name="T_NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="T_TOURNIER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="T_QUAFOOTPLAYERS" Type="Int32" Nullable="false" />
+          <Property Name="T_YEAROFFOUND" Type="Int32" Nullable="false" />
+          <Property Name="S_ID" Type="Int32" Nullable="false" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="coaches" Relationship="Self.FK__teams__C_ID__534D60F1" FromRole="teams" ToRole="coaches" />
+          <NavigationProperty Name="footplayers" Relationship="Self.FK__footplaye__FP_WO__5629CD9C" FromRole="teams" ToRole="footplayers" />
+          <NavigationProperty Name="leagues" Relationship="Self.FK__teams__L_ID__5165187F" FromRole="teams" ToRole="leagues" />
+          <NavigationProperty Name="stadiums" Relationship="Self.FK__teams__S_ID__52593CB8" FromRole="teams" ToRole="stadiums" />
+        </EntityType>
+        <Association Name="FK__teams__C_ID__534D60F1">
+          <End Role="coaches" Type="Self.coaches" Multiplicity="1" />
+          <End Role="teams" Type="Self.teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coaches">
+              <PropertyRef Name="C_ID" />
+            </Principal>
+            <Dependent Role="teams">
+              <PropertyRef Name="C_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__footplaye__FP_WO__5629CD9C">
+          <End Role="teams" Type="Self.teams" Multiplicity="1" />
+          <End Role="footplayers" Type="Self.footplayers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teams">
+              <PropertyRef Name="T_ID" />
+            </Principal>
+            <Dependent Role="footplayers">
+              <PropertyRef Name="T_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__teams__L_ID__5165187F">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+          <End Role="teams" Type="Self.teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="leagues">
+              <PropertyRef Name="L_ID" />
+            </Principal>
+            <Dependent Role="teams">
+              <PropertyRef Name="L_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__teams__S_ID__52593CB8">
+          <End Role="stadiums" Type="Self.stadiums" Multiplicity="1" />
+          <End Role="teams" Type="Self.teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stadiums">
+              <PropertyRef Name="S_ID" />
+            </Principal>
+            <Dependent Role="teams">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_KP_FootballEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="coaches" EntityType="Self.coaches" />
+          <EntitySet Name="footplayers" EntityType="Self.footplayers" />
+          <EntitySet Name="leagues" EntityType="Self.leagues" />
+          <EntitySet Name="stadiums" EntityType="Self.stadiums" />
+          <EntitySet Name="teams" EntityType="Self.teams" />
+          <AssociationSet Name="FK__teams__C_ID__534D60F1" Association="Self.FK__teams__C_ID__534D60F1">
+            <End Role="coaches" EntitySet="coaches" />
+            <End Role="teams" EntitySet="teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__footplaye__FP_WO__5629CD9C" Association="Self.FK__footplaye__FP_WO__5629CD9C">
+            <End Role="teams" EntitySet="teams" />
+            <End Role="footplayers" EntitySet="footplayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__teams__L_ID__5165187F" Association="Self.FK__teams__L_ID__5165187F">
+            <End Role="leagues" EntitySet="leagues" />
+            <End Role="teams" EntitySet="teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__teams__S_ID__52593CB8" Association="Self.FK__teams__S_ID__52593CB8">
+            <End Role="stadiums" EntitySet="stadiums" />
+            <End Role="teams" EntitySet="teams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище db_KP_FootballModelContainer" CdmEntityContainer="db_KP_FootballEntities">
+          <EntitySetMapping Name="coaches">
+            <EntityTypeMapping TypeName="db_KP_FootballModel.coaches">
+              <MappingFragment StoreEntitySet="coaches">
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="C_SURNAME" ColumnName="C_SURNAME" />
+                <ScalarProperty Name="C_NAME" ColumnName="C_NAME" />
+                <ScalarProperty Name="C_NATIONALITY" ColumnName="C_NATIONALITY" />
+                <ScalarProperty Name="C_DATEOFBIRTH" ColumnName="C_DATEOFBIRTH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="footplayers">
+            <EntityTypeMapping TypeName="db_KP_FootballModel.footplayers">
+              <MappingFragment StoreEntitySet="footplayers">
+                <ScalarProperty Name="FP_ID" ColumnName="FP_ID" />
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="FP_SURNAME" ColumnName="FP_SURNAME" />
+                <ScalarProperty Name="FP_NAME" ColumnName="FP_NAME" />
+                <ScalarProperty Name="FP_DATEOFBIRTH" ColumnName="FP_DATEOFBIRTH" />
+                <ScalarProperty Name="FP_NATIONALITY" ColumnName="FP_NATIONALITY" />
+                <ScalarProperty Name="FP_POSITION" ColumnName="FP_POSITION" />
+                <ScalarProperty Name="FP_TEAMNUMBER" ColumnName="FP_TEAMNUMBER" />
+                <ScalarProperty Name="FP_GROWTH" ColumnName="FP_GROWTH" />
+                <ScalarProperty Name="FP_WEIGHT" ColumnName="FP_WEIGHT" />
+                <ScalarProperty Name="FP_WORKINGLEG" ColumnName="FP_WORKINGLEG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="leagues">
+            <EntityTypeMapping TypeName="db_KP_FootballModel.leagues">
+              <MappingFragment StoreEntitySet="leagues">
+                <ScalarProperty Name="L_ID" ColumnName="L_ID" />
+                <ScalarProperty Name="L_NAME" ColumnName="L_NAME" />
+                <ScalarProperty Name="L_COUNTRY" ColumnName="L_COUNTRY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stadiums">
+            <EntityTypeMapping TypeName="db_KP_FootballModel.stadiums">
+              <MappingFragment StoreEntitySet="stadiums">
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="S_NAME" ColumnName="S_NAME" />
+                <ScalarProperty Name="S_CAPACITY" ColumnName="S_CAPACITY" />
+                <ScalarProperty Name="S_YEAROPENING" ColumnName="S_YEAROPENING" />
+                <ScalarProperty Name="S_LOCATIONCITY" ColumnName="S_LOCATIONCITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teams">
+            <EntityTypeMapping TypeName="db_KP_FootballModel.teams">
+              <MappingFragment StoreEntitySet="teams">
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="L_ID" ColumnName="L_ID" />
+                <ScalarProperty Name="T_NAME" ColumnName="T_NAME" />
+                <ScalarProperty Name="T_TOURNIER" ColumnName="T_TOURNIER" />
+                <ScalarProperty Name="T_QUAFOOTPLAYERS" ColumnName="T_QUAFOOTPLAYERS" />
+                <ScalarProperty Name="T_YEAROFFOUND" ColumnName="T_YEAROFFOUND" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
