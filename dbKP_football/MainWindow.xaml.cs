@@ -11,32 +11,19 @@ namespace dbKP_football
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            Data.db.leagues.Load();
-            //League_ComboBox.DataContext = Leagues;
-        }
-        //private static db_KP_FootballEntities db = new db_KP_FootballEntities();
-        public ObservableCollection<leagues> leagues = Data.GetLeagues();
+            foreach (var item in db.leagues)
+                League_ComboBox.Items.Add(item);
+            League_ComboBox.DisplayMemberPath = "L_NAME";
+            db.leagues.Load();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
-        private leagues selectedLeague = new leagues();
-        public leagues SelectedLeague
-        {
-            get { return selectedLeague; }
-            set { selectedLeague = value;
-                Data.League_Id = value.L_ID;
-                OnPropertyChanged("SelectedLeague"); }
-        }
+        private static db_KP_FootballEntities db = new db_KP_FootballEntities();
+        
 
         private void Teams_buttonClick(object sender, RoutedEventArgs e)
         {
@@ -72,6 +59,11 @@ namespace dbKP_football
         private void Exit_buttonClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void League_ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Data.League_Id = (League_ComboBox.SelectedItem as leagues).L_ID;
         }
     }
 }

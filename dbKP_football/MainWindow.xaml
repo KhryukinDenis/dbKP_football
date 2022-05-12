@@ -10,15 +10,16 @@
     <Window.Background>
         <ImageBrush ImageSource="Resources/F_mainWindow.jpg"/>
     </Window.Background>
+    
 
     <Grid >
         <Grid.Background>
             <ImageBrush/>
         </Grid.Background>
         <StackPanel HorizontalAlignment="Center" Margin="0,0,0,20" Width="150" Height="400">
-            
-            <ComboBox
-                     x:Name="League_ComboBox" Margin="0,8"  ItemsSource="{Binding leagues}"
+
+            <ComboBox SelectionChanged="League_ComboBox_SelectionChanged"
+                     x:Name="League_ComboBox" Margin="0,8"  ItemsSource="{Binding Leagues,UpdateSourceTrigger=Default}"
                      SelectedItem="{Binding SelectedLeague,UpdateSourceTrigger=PropertyChanged}"
                      DisplayMemberPath="L_NAME"
                      materialDesign:TextFieldAssist.TextFieldCornerRadius="10"

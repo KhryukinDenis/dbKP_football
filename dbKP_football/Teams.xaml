@@ -15,13 +15,6 @@
             <Expander Background="{x:Null}" BorderBrush="{x:Null}" ExpandDirection="Left" Foreground="White">
                 <StackPanel Margin="10,10,0,0" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top">
 
-                    <TextBox x:Name="textBox_leaguesID" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="16" TextAlignment="Left" 
-                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                     SpellCheck.IsEnabled="False" 
-                     materialDesign:HintAssist.Hint="Код лиги" FontFamily="/dbKP_football;component/Resources/#Champions"
-                     Background="White"  Margin="0,0,0,8"/>
-
                     <TextBox x:Name="textBox_nameTeam" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                       FontSize="16" TextAlignment="Left" 
                       Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 

@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 
 namespace dbKP_football
 {
@@ -13,7 +14,12 @@ namespace dbKP_football
         {
             InitializeComponent();
             db.stadiums.Load();
-            S_dataGrid.ItemsSource = db.stadiums.Local.ToBindingList();
+            name.Binding = new Binding("S_NAME");
+            cap.Binding = new Binding("S_CAPACITY");
+            year.Binding = new Binding("S_YEAROPENING");
+            city.Binding = new Binding("S_LOCATIONCITY");
+            refresh();
+            //S_dataGrid.ItemsSource = db.stadiums.Local.ToBindingList();
         }
         private db_KP_FootballEntities db = new db_KP_FootballEntities();
 
@@ -48,7 +54,18 @@ namespace dbKP_football
 
         private void SDelete_button_Click(object sender, RoutedEventArgs e)
         {
+            var delStad = db.stadiums.Find((S_dataGrid.SelectedItem as stadiums).S_ID);
+            db.stadiums.Remove(delStad);
+            db.SaveChanges();
+            refresh();
+        }
 
+        private void refresh()
+        {
+            S_dataGrid.Items.Clear();
+            foreach (var i in db.stadiums)
+                S_dataGrid.Items.Add(i);
+            S_dataGrid.Items.Refresh();
         }
     }
 }

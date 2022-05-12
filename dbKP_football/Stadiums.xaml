@@ -65,10 +65,10 @@
                 <DataGrid x:Name="S_dataGrid" Margin="0,10,15,15" ColumnWidth="*" 
                           AutoGenerateColumns="False" FontFamily="/dbKP_football;component/Resources/#Champions" Background="White" Foreground="DarkBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Название стадиона"/>
-                        <DataGridTextColumn Header="Вместимость"/>
-                        <DataGridTextColumn Header="Год открытия"/>
-                        <DataGridTextColumn Header="Город расположения"/>
+                        <DataGridTextColumn x:Name="name" Header="Название стадиона"/>
+                        <DataGridTextColumn x:Name="cap" Header="Вместимость"/>
+                        <DataGridTextColumn x:Name="year" Header="Год открытия"/>
+                        <DataGridTextColumn x:Name="city" Header="Город расположения"/>
                         <DataGridTemplateColumn Header="Действия">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

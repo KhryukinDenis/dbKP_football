@@ -12,18 +12,24 @@ namespace dbKP_football
         public Teams()
         {
             InitializeComponent();
-            Data.db.teams.Load();
-            T_dataGrid.ItemsSource = Data.db.teams.Local.ToBindingList();
-            textBox_nameTeam.Text = Data.League_Id.ToString();
+            db.teams.Load();
+            T_dataGrid.ItemsSource = db.teams.Local.ToBindingList();
         }
-        //private db_KP_FootballEntities db = new db_KP_FootballEntities();
+
+        private void refresh()
+        {
+            T_dataGrid.Items.Clear();
+            foreach (var i in db.teams)
+                T_dataGrid.Items.Add(i);
+            T_dataGrid.Items.Refresh();
+        }
+        private db_KP_FootballEntities db = new db_KP_FootballEntities();
 
 
         private void TAdd_button_Click(object sender, RoutedEventArgs e)
         {
             var TEAMS = new teams()
             {
-                L_ID = int.Parse(textBox_leaguesID.Text),
                 T_NAME = textBox_nameTeam.Text,
                 T_TOURNIER = Tournier_ComboBox.Text,
                 T_QUAFOOTPLAYERS = int.Parse(textBox_quaFootPlayers.Text),
@@ -31,16 +37,15 @@ namespace dbKP_football
                 S_ID = int.Parse(textBox_stadiumID.Text),
                 C_ID = int.Parse(textBox_coachID.Text)
             };
-            if (!Data.db.teams.Any(u => u.T_NAME == TEAMS.T_NAME))
-                Data.db.teams.Add(TEAMS);
+            if (!db.teams.Any(u => u.T_NAME == TEAMS.T_NAME))
+                db.teams.Add(TEAMS);
 
             T_dataGrid.Items.Refresh();
-            Data.db.SaveChanges();
+            db.SaveChanges();
         }
 
         private void TClear_button_Click(object sender, RoutedEventArgs e)
         {
-            textBox_leaguesID.Clear();
             textBox_nameTeam.Clear();
             Tournier_ComboBox.SelectedIndex = -1;
             textBox_quaFootPlayers.Clear();
@@ -56,7 +61,9 @@ namespace dbKP_football
 
         private void TDelete_button_Click(object sender, RoutedEventArgs e)
         {
-
+            var delTeam = db.teams.Find((T_dataGrid.SelectedItem as teams).T_ID);
+            db.teams.Remove(delTeam);
+            db.SaveChanges();
         }
     }
 }
