@@ -4,19 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c532a26912c440b9a84e507dcb86716c" Name="Diagram1">
-        <EntityTypeShape EntityType="db_KP_FootballModel.coaches" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_KP_FootballModel.footplayers" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_KP_FootballModel.leagues" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_KP_FootballModel.stadiums" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_KP_FootballModel.teams" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
-        <AssociationConnector Association="db_KP_FootballModel.FK__coaches__L_ID__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="db_KP_FootballModel.FK__teams__C_ID__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="db_KP_FootballModel.FK__footplaye__FP_WO__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="db_KP_FootballModel.FK__footplayer__L_ID__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="db_KP_FootballModel.FK__stadiums__L_ID__5BE2A6F2" ManuallyRouted="false" />
-        <AssociationConnector Association="db_KP_FootballModel.FK__teams__L_ID__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="db_KP_FootballModel.FK__teams__S_ID__52593CB8" ManuallyRouted="false" />
+      <Diagram DiagramId="1ed54476cc3b4d5d8e4e7e7514b9fa44" Name="Diagram1">
+        <EntityTypeShape EntityType="db_KP_FootballModel.coaches" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.footplayers" Width="1.5" PointX="7.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.leagues" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.stadiums" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_KP_FootballModel.teams" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__coaches__L_ID__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__teams__C_ID__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__footplayer__T_ID__160F4887" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__stadiums__L_ID__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__teams__L_ID__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="db_KP_FootballModel.FK__teams__S_ID__1BC821DD" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

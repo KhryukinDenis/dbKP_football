@@ -31,7 +31,6 @@
           <Property Name="FP_GROWTH" Type="float" Nullable="false" />
           <Property Name="FP_WEIGHT" Type="float" Nullable="false" />
           <Property Name="FP_WORKINGLEG" Type="nvarchar" MaxLength="4" Nullable="false" />
-          <Property Name="L_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="leagues">
           <Key>
@@ -65,8 +64,10 @@
           <Property Name="S_ID" Type="int" Nullable="false" />
           <Property Name="C_ID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__coaches__L_ID__5AEE82B9">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+        <Association Name="FK__coaches__L_ID__19DFD96B">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="coaches" Type="Self.coaches" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="leagues">
@@ -77,8 +78,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__footplaye__FP_WO__5629CD9C">
-          <End Role="teams" Type="Self.teams" Multiplicity="1" />
+        <Association Name="FK__footplayer__T_ID__160F4887">
+          <End Role="teams" Type="Self.teams" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="footplayers" Type="Self.footplayers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="teams">
@@ -89,20 +92,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__footplayer__L_ID__5CD6CB2B">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
-          <End Role="footplayers" Type="Self.footplayers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="leagues">
-              <PropertyRef Name="L_ID" />
-            </Principal>
-            <Dependent Role="footplayers">
-              <PropertyRef Name="L_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__stadiums__L_ID__5BE2A6F2">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+        <Association Name="FK__stadiums__L_ID__1AD3FDA4">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="stadiums" Type="Self.stadiums" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="leagues">
@@ -113,7 +106,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__teams__C_ID__534D60F1">
+        <Association Name="FK__teams__C_ID__1CBC4616">
           <End Role="coaches" Type="Self.coaches" Multiplicity="1" />
           <End Role="teams" Type="Self.teams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,8 +118,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__teams__L_ID__5165187F">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+        <Association Name="FK__teams__L_ID__114A936A">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="teams" Type="Self.teams" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="leagues">
@@ -137,7 +132,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__teams__S_ID__52593CB8">
+        <Association Name="FK__teams__S_ID__1BC821DD">
           <End Role="stadiums" Type="Self.stadiums" Multiplicity="1" />
           <End Role="teams" Type="Self.teams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -155,31 +150,27 @@
           <EntitySet Name="leagues" EntityType="Self.leagues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stadiums" EntityType="Self.stadiums" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="teams" EntityType="Self.teams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__coaches__L_ID__5AEE82B9" Association="Self.FK__coaches__L_ID__5AEE82B9">
+          <AssociationSet Name="FK__coaches__L_ID__19DFD96B" Association="Self.FK__coaches__L_ID__19DFD96B">
             <End Role="leagues" EntitySet="leagues" />
             <End Role="coaches" EntitySet="coaches" />
           </AssociationSet>
-          <AssociationSet Name="FK__footplaye__FP_WO__5629CD9C" Association="Self.FK__footplaye__FP_WO__5629CD9C">
+          <AssociationSet Name="FK__footplayer__T_ID__160F4887" Association="Self.FK__footplayer__T_ID__160F4887">
             <End Role="teams" EntitySet="teams" />
             <End Role="footplayers" EntitySet="footplayers" />
           </AssociationSet>
-          <AssociationSet Name="FK__footplayer__L_ID__5CD6CB2B" Association="Self.FK__footplayer__L_ID__5CD6CB2B">
-            <End Role="leagues" EntitySet="leagues" />
-            <End Role="footplayers" EntitySet="footplayers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__stadiums__L_ID__5BE2A6F2" Association="Self.FK__stadiums__L_ID__5BE2A6F2">
+          <AssociationSet Name="FK__stadiums__L_ID__1AD3FDA4" Association="Self.FK__stadiums__L_ID__1AD3FDA4">
             <End Role="leagues" EntitySet="leagues" />
             <End Role="stadiums" EntitySet="stadiums" />
           </AssociationSet>
-          <AssociationSet Name="FK__teams__C_ID__534D60F1" Association="Self.FK__teams__C_ID__534D60F1">
+          <AssociationSet Name="FK__teams__C_ID__1CBC4616" Association="Self.FK__teams__C_ID__1CBC4616">
             <End Role="coaches" EntitySet="coaches" />
             <End Role="teams" EntitySet="teams" />
           </AssociationSet>
-          <AssociationSet Name="FK__teams__L_ID__5165187F" Association="Self.FK__teams__L_ID__5165187F">
+          <AssociationSet Name="FK__teams__L_ID__114A936A" Association="Self.FK__teams__L_ID__114A936A">
             <End Role="leagues" EntitySet="leagues" />
             <End Role="teams" EntitySet="teams" />
           </AssociationSet>
-          <AssociationSet Name="FK__teams__S_ID__52593CB8" Association="Self.FK__teams__S_ID__52593CB8">
+          <AssociationSet Name="FK__teams__S_ID__1BC821DD" Association="Self.FK__teams__S_ID__1BC821DD">
             <End Role="stadiums" EntitySet="stadiums" />
             <End Role="teams" EntitySet="teams" />
           </AssociationSet>
@@ -199,8 +190,8 @@
           <Property Name="C_NATIONALITY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="C_DATEOFBIRTH" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="L_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="leagues" Relationship="Self.FK__coaches__L_ID__5AEE82B9" FromRole="coaches" ToRole="leagues" />
-          <NavigationProperty Name="teams" Relationship="Self.FK__teams__C_ID__534D60F1" FromRole="coaches" ToRole="teams" />
+          <NavigationProperty Name="leagues" Relationship="Self.FK__coaches__L_ID__19DFD96B" FromRole="coaches" ToRole="leagues" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__teams__C_ID__1CBC4616" FromRole="coaches" ToRole="teams" />
         </EntityType>
         <EntityType Name="footplayers">
           <Key>
@@ -217,9 +208,7 @@
           <Property Name="FP_GROWTH" Type="Double" Nullable="false" />
           <Property Name="FP_WEIGHT" Type="Double" Nullable="false" />
           <Property Name="FP_WORKINGLEG" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="L_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="teams" Relationship="Self.FK__footplaye__FP_WO__5629CD9C" FromRole="footplayers" ToRole="teams" />
-          <NavigationProperty Name="leagues" Relationship="Self.FK__footplayer__L_ID__5CD6CB2B" FromRole="footplayers" ToRole="leagues" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__footplayer__T_ID__160F4887" FromRole="footplayers" ToRole="teams" />
         </EntityType>
         <EntityType Name="leagues">
           <Key>
@@ -228,10 +217,9 @@
           <Property Name="L_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="L_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="L_COUNTRY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="coaches" Relationship="Self.FK__coaches__L_ID__5AEE82B9" FromRole="leagues" ToRole="coaches" />
-          <NavigationProperty Name="footplayers" Relationship="Self.FK__footplayer__L_ID__5CD6CB2B" FromRole="leagues" ToRole="footplayers" />
-          <NavigationProperty Name="stadiums" Relationship="Self.FK__stadiums__L_ID__5BE2A6F2" FromRole="leagues" ToRole="stadiums" />
-          <NavigationProperty Name="teams" Relationship="Self.FK__teams__L_ID__5165187F" FromRole="leagues" ToRole="teams" />
+          <NavigationProperty Name="coaches" Relationship="Self.FK__coaches__L_ID__19DFD96B" FromRole="leagues" ToRole="coaches" />
+          <NavigationProperty Name="stadiums" Relationship="Self.FK__stadiums__L_ID__1AD3FDA4" FromRole="leagues" ToRole="stadiums" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__teams__L_ID__114A936A" FromRole="leagues" ToRole="teams" />
         </EntityType>
         <EntityType Name="stadiums">
           <Key>
@@ -243,8 +231,8 @@
           <Property Name="S_YEAROPENING" Type="Int32" Nullable="false" />
           <Property Name="S_LOCATIONCITY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="L_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="leagues" Relationship="Self.FK__stadiums__L_ID__5BE2A6F2" FromRole="stadiums" ToRole="leagues" />
-          <NavigationProperty Name="teams" Relationship="Self.FK__teams__S_ID__52593CB8" FromRole="stadiums" ToRole="teams" />
+          <NavigationProperty Name="leagues" Relationship="Self.FK__stadiums__L_ID__1AD3FDA4" FromRole="stadiums" ToRole="leagues" />
+          <NavigationProperty Name="teams" Relationship="Self.FK__teams__S_ID__1BC821DD" FromRole="stadiums" ToRole="teams" />
         </EntityType>
         <EntityType Name="teams">
           <Key>
@@ -258,13 +246,15 @@
           <Property Name="T_YEAROFFOUND" Type="Int32" Nullable="false" />
           <Property Name="S_ID" Type="Int32" Nullable="false" />
           <Property Name="C_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="coaches" Relationship="Self.FK__teams__C_ID__534D60F1" FromRole="teams" ToRole="coaches" />
-          <NavigationProperty Name="footplayers" Relationship="Self.FK__footplaye__FP_WO__5629CD9C" FromRole="teams" ToRole="footplayers" />
-          <NavigationProperty Name="leagues" Relationship="Self.FK__teams__L_ID__5165187F" FromRole="teams" ToRole="leagues" />
-          <NavigationProperty Name="stadiums" Relationship="Self.FK__teams__S_ID__52593CB8" FromRole="teams" ToRole="stadiums" />
+          <NavigationProperty Name="coaches" Relationship="Self.FK__teams__C_ID__1CBC4616" FromRole="teams" ToRole="coaches" />
+          <NavigationProperty Name="footplayers" Relationship="Self.FK__footplayer__T_ID__160F4887" FromRole="teams" ToRole="footplayers" />
+          <NavigationProperty Name="leagues" Relationship="Self.FK__teams__L_ID__114A936A" FromRole="teams" ToRole="leagues" />
+          <NavigationProperty Name="stadiums" Relationship="Self.FK__teams__S_ID__1BC821DD" FromRole="teams" ToRole="stadiums" />
         </EntityType>
-        <Association Name="FK__coaches__L_ID__5AEE82B9">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+        <Association Name="FK__coaches__L_ID__19DFD96B">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="coaches" Type="Self.coaches" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="leagues">
@@ -275,7 +265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__teams__C_ID__534D60F1">
+        <Association Name="FK__teams__C_ID__1CBC4616">
           <End Role="coaches" Type="Self.coaches" Multiplicity="1" />
           <End Role="teams" Type="Self.teams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -287,8 +277,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__footplaye__FP_WO__5629CD9C">
-          <End Role="teams" Type="Self.teams" Multiplicity="1" />
+        <Association Name="FK__footplayer__T_ID__160F4887">
+          <End Role="teams" Type="Self.teams" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="footplayers" Type="Self.footplayers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="teams">
@@ -299,20 +291,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__footplayer__L_ID__5CD6CB2B">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
-          <End Role="footplayers" Type="Self.footplayers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="leagues">
-              <PropertyRef Name="L_ID" />
-            </Principal>
-            <Dependent Role="footplayers">
-              <PropertyRef Name="L_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__stadiums__L_ID__5BE2A6F2">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+        <Association Name="FK__stadiums__L_ID__1AD3FDA4">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="stadiums" Type="Self.stadiums" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="leagues">
@@ -323,8 +305,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__teams__L_ID__5165187F">
-          <End Role="leagues" Type="Self.leagues" Multiplicity="1" />
+        <Association Name="FK__teams__L_ID__114A936A">
+          <End Role="leagues" Type="Self.leagues" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="teams" Type="Self.teams" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="leagues">
@@ -335,7 +319,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__teams__S_ID__52593CB8">
+        <Association Name="FK__teams__S_ID__1BC821DD">
           <End Role="stadiums" Type="Self.stadiums" Multiplicity="1" />
           <End Role="teams" Type="Self.teams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,31 +337,27 @@
           <EntitySet Name="leagues" EntityType="Self.leagues" />
           <EntitySet Name="stadiums" EntityType="Self.stadiums" />
           <EntitySet Name="teams" EntityType="Self.teams" />
-          <AssociationSet Name="FK__coaches__L_ID__5AEE82B9" Association="Self.FK__coaches__L_ID__5AEE82B9">
+          <AssociationSet Name="FK__coaches__L_ID__19DFD96B" Association="Self.FK__coaches__L_ID__19DFD96B">
             <End Role="leagues" EntitySet="leagues" />
             <End Role="coaches" EntitySet="coaches" />
           </AssociationSet>
-          <AssociationSet Name="FK__teams__C_ID__534D60F1" Association="Self.FK__teams__C_ID__534D60F1">
+          <AssociationSet Name="FK__teams__C_ID__1CBC4616" Association="Self.FK__teams__C_ID__1CBC4616">
             <End Role="coaches" EntitySet="coaches" />
             <End Role="teams" EntitySet="teams" />
           </AssociationSet>
-          <AssociationSet Name="FK__footplaye__FP_WO__5629CD9C" Association="Self.FK__footplaye__FP_WO__5629CD9C">
+          <AssociationSet Name="FK__footplayer__T_ID__160F4887" Association="Self.FK__footplayer__T_ID__160F4887">
             <End Role="teams" EntitySet="teams" />
             <End Role="footplayers" EntitySet="footplayers" />
           </AssociationSet>
-          <AssociationSet Name="FK__footplayer__L_ID__5CD6CB2B" Association="Self.FK__footplayer__L_ID__5CD6CB2B">
-            <End Role="leagues" EntitySet="leagues" />
-            <End Role="footplayers" EntitySet="footplayers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__stadiums__L_ID__5BE2A6F2" Association="Self.FK__stadiums__L_ID__5BE2A6F2">
+          <AssociationSet Name="FK__stadiums__L_ID__1AD3FDA4" Association="Self.FK__stadiums__L_ID__1AD3FDA4">
             <End Role="leagues" EntitySet="leagues" />
             <End Role="stadiums" EntitySet="stadiums" />
           </AssociationSet>
-          <AssociationSet Name="FK__teams__L_ID__5165187F" Association="Self.FK__teams__L_ID__5165187F">
+          <AssociationSet Name="FK__teams__L_ID__114A936A" Association="Self.FK__teams__L_ID__114A936A">
             <End Role="leagues" EntitySet="leagues" />
             <End Role="teams" EntitySet="teams" />
           </AssociationSet>
-          <AssociationSet Name="FK__teams__S_ID__52593CB8" Association="Self.FK__teams__S_ID__52593CB8">
+          <AssociationSet Name="FK__teams__S_ID__1BC821DD" Association="Self.FK__teams__S_ID__1BC821DD">
             <End Role="stadiums" EntitySet="stadiums" />
             <End Role="teams" EntitySet="teams" />
           </AssociationSet>
@@ -414,7 +394,6 @@
                 <ScalarProperty Name="FP_GROWTH" ColumnName="FP_GROWTH" />
                 <ScalarProperty Name="FP_WEIGHT" ColumnName="FP_WEIGHT" />
                 <ScalarProperty Name="FP_WORKINGLEG" ColumnName="FP_WORKINGLEG" />
-                <ScalarProperty Name="L_ID" ColumnName="L_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

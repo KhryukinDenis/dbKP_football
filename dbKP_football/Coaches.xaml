@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:dbKP_football"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Главные тренеры" Height="540" Width="960" WindowStartupLocation="CenterScreen" MinWidth="960" MinHeight="540" Icon="Resources/I_coaches.png">
@@ -15,28 +14,30 @@
             <Expander Background="{x:Null}" BorderBrush="{x:Null}" ExpandDirection="Left" Foreground="White">
                 <StackPanel Margin="10,10,0,0" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top">
 
-                    <TextBox x:Name="textBox_surnameCoaches" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                      FontSize="16" TextAlignment="Left" 
-                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                      SpellCheck.IsEnabled="False" 
-                      materialDesign:HintAssist.Hint="Фамилия" 
-                      Background="White" Margin="0,0,0,10" FontFamily="/dbKP_football;component/Resources/#Champions"/>
-
                     <TextBox x:Name="textBox_nameCoaches" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="16" TextAlignment="Left" 
+                     FontSize="16" TextAlignment="Left" PreviewTextInput="DefenseDurRusLet"
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Имя" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,10"/>
 
+                    <TextBox x:Name="textBox_surnameCoaches" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                      FontSize="16" TextAlignment="Left" PreviewTextInput="DefenseDurRusLet"
+                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                      SpellCheck.IsEnabled="False" 
+                      materialDesign:HintAssist.Hint="Фамилия" 
+                      Background="White" Margin="0,0,0,10" FontFamily="/dbKP_football;component/Resources/#Champions"/>
+                    
                     <TextBox x:Name="textBox_nationalityCoaches" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                     SpellCheck.IsEnabled="False" 
+                     SpellCheck.IsEnabled="False" PreviewTextInput="DefenseDurRusLet"
                      materialDesign:HintAssist.Hint="Гражданство" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,10"/>
 
                     <DatePicker x:Name="datePicker_dateOfBirthCoaches" Margin="0,0,0,20"
+                     PreviewTextInput="DefenseDurDate"
                      materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
                      materialDesign:HintAssist.Hint="Дата рождения"
                      materialDesign:TextFieldAssist.HasClearButton="True"
@@ -63,18 +64,39 @@
                 </StackPanel>
             </Expander>
             <StackPanel>
-                <DataGrid x:Name="C_dataGrid" Margin="0,10,15,15" ColumnWidth="*" 
-                           AutoGenerateColumns="False" FontFamily="/dbKP_football;component/Resources/#Champions" Background="White" Foreground="DarkBlue">
+
+                <Expander Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,15,0"
+                 HorizontalAlignment="Stretch"  Foreground="White" ExpandDirection="Down">
+                    <DockPanel HorizontalAlignment="Left" Margin="0,0,0,5" >
+                        <TextBox KeyDown="textBox_searchC_KeyDown" Name="textBox_searchC" Width="400" Height="43" materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
+                     FontSize="14"
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False" Background="White"
+                     materialDesign:HintAssist.Hint="Поиск" FontFamily="/dbKP_football;component/Resources/#Champions"/>
+                        <Button x:Name ="CSearch" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Foreground="White" BorderBrush="White" Margin="10,0,0,0"
+                    FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" 
+                    Content="Поиск" Click="CSearch_Click" />
+                    </DockPanel>
+                </Expander>
+
+                <DataGrid x:Name="C_dataGrid" Margin="0,10,15,15" ColumnWidth="*" IsReadOnly="True"
+                          AutoGenerateColumns="False" FontFamily="/dbKP_football;component/Resources/#Champions" 
+                          Background="White" Foreground="DarkBlue" FontSize="16">
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="surname" Header="Фамилия"/>
                         <DataGridTextColumn x:Name="name" Header="Имя"/>
+                        <DataGridTextColumn x:Name="surname" Header="Фамилия"/>
                         <DataGridTextColumn x:Name="nation" Header="Гражданство"/>
-                        <DataGridTextColumn x:Name="birthdate" Header="Дата рождения"/>
-                        <DataGridTemplateColumn Header="Действия">
+                        <DataGridTextColumn x:Name="birthdate" Header="Дата рождения" MinWidth="250" MaxWidth="250"/>
+                        <DataGridTemplateColumn Header="Действия" MinWidth="100" MaxWidth="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="CChange_button1" Margin="0,0,5,0"
+                                        <Button x:Name="CChange_button1" Margin="0,0,5,0" Height="25" Width="25"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"
                                         Click="CChange_button1_Click"
@@ -82,7 +104,7 @@
                                             <materialDesign:PackIcon
                                                 Kind="BorderColor" />
                                         </Button>
-                                        <Button x:Name="CDelete_button"
+                                        <Button x:Name="CDelete_button" Height="25" Width="25"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                         Click="CDelete_button_Click"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"

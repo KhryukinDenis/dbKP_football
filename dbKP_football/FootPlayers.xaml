@@ -3,170 +3,200 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:dbKP_football"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Футболисты" Height="540" Width="960" WindowStartupLocation="CenterScreen" MinWidth="960" MinHeight="540" Icon="Resources/I_players.png">
     <Window.Background>
         <ImageBrush ImageSource="Resources/F_players.png"/>
     </Window.Background>
-    <Grid>
-        <DockPanel >
-            <Expander Background="{x:Null}" BorderBrush="{x:Null}" ExpandDirection="Left" Foreground="White">
-                <StackPanel Margin="10,10,0,0" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Grid x:Name="gridCommon">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Expander Background="{x:Null}" BorderBrush="{x:Null}" ExpandDirection="Left" Foreground="White">
+                    <StackPanel Margin="10,10,0,0" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top">
 
-                    <TextBox x:Name="textBox_teamID" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                      FontSize="11"
-                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                      SpellCheck.IsEnabled="False" 
-                      materialDesign:HintAssist.Hint="Код команды" 
-                      Background="White" Margin="0,0,0,3" FontFamily="/dbKP_football;component/Resources/#Champions"/>
-
-                    <TextBox x:Name="textBox_surnamePlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="11"
-                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                     SpellCheck.IsEnabled="False" 
-                     materialDesign:HintAssist.Hint="Фамилия" FontFamily="/dbKP_football;component/Resources/#Champions"
-                     Background="White" Margin="0,0,0,3"/>
-
-                    <TextBox x:Name="textBox_namePlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="11" TextAlignment="Left" 
+                        <TextBox x:Name="textBox_namePlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="11" TextAlignment="Left" PreviewTextInput="DefenseDurRusLet" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Имя" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,3"/>
 
-                    <DatePicker x:Name="datePicker_dateOfBirthPlayers" Margin="0,0,0,3"
+                        <TextBox x:Name="textBox_surnamePlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="11" PreviewTextInput="DefenseDurRusLet" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False" 
+                     materialDesign:HintAssist.Hint="Фамилия" FontFamily="/dbKP_football;component/Resources/#Champions"
+                     Background="White" Margin="0,0,0,3"/>
+
+                        <DatePicker x:Name="datePicker_dateOfBirthPlayers" Margin="0,0,0,3"
+                     PreviewTextInput="DefenseDurDate" 
                      materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
                      materialDesign:HintAssist.Hint="Дата рождения"
                      materialDesign:TextFieldAssist.HasClearButton="True"
                      Style="{StaticResource MaterialDesignFilledDatePicker}"
                      FontFamily="/dbKP_football;component/Resources/#Champions" 
-                     FontSize="11" Background="White" Foreground="DarkBlue" />                          
+                     FontSize="11" Background="White" Foreground="DarkBlue" />
 
-                    <TextBox x:Name="textBox_nationalityPlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="11" TextAlignment="Left" 
+                        <TextBox x:Name="textBox_nationalityPlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="11" TextAlignment="Left" PreviewTextInput="DefenseDurRusLet" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Гражданство" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,3" />
 
-                    <ComboBox
+                        <ComboBox
                      x:Name="Position_ComboBox" Margin="0,0,0,3" materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
                      Style="{StaticResource MaterialDesignFilledComboBox}"
                      IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
                      materialDesign:HintAssist.Hint="Позиция"
                      FontFamily="/dbKP_football;component/Resources/#Champions" FontSize="11" Background="White" Foreground="DarkBlue" >
-                        <ComboBoxItem Content="GK" />
-                        <ComboBoxItem Content="RB" />
-                        <ComboBoxItem Content="RWB" />
-                        <ComboBoxItem Content="LB" />
-                        <ComboBoxItem Content="LWB" />
-                        <ComboBoxItem Content="CB" />
-                        <ComboBoxItem Content="CDM" />
-                        <ComboBoxItem Content="CM" />
-                        <ComboBoxItem Content="RM" />
-                        <ComboBoxItem Content="LM" />
-                        <ComboBoxItem Content="CAM" />
-                        <ComboBoxItem Content="RW" />
-                        <ComboBoxItem Content="LW" />
-                        <ComboBoxItem Content="CF" />
-                        <ComboBoxItem Content="ST">
-                        </ComboBoxItem>
-                    </ComboBox>
+                            <ComboBoxItem Content="GK" />
+                            <ComboBoxItem Content="RB" />
+                            <ComboBoxItem Content="RWB" />
+                            <ComboBoxItem Content="LB" />
+                            <ComboBoxItem Content="LWB" />
+                            <ComboBoxItem Content="CB" />
+                            <ComboBoxItem Content="CDM" />
+                            <ComboBoxItem Content="CM" />
+                            <ComboBoxItem Content="RM" />
+                            <ComboBoxItem Content="LM" />
+                            <ComboBoxItem Content="CAM" />
+                            <ComboBoxItem Content="RW" />
+                            <ComboBoxItem Content="LW" />
+                            <ComboBoxItem Content="CF" />
+                            <ComboBoxItem Content="ST">
+                            </ComboBoxItem>
+                        </ComboBox>
 
-                    <TextBox x:Name="textBox_teamNumber" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="11" TextAlignment="Left" 
+                        <TextBox x:Name="textBox_teamNumber" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="11" TextAlignment="Left" PreviewTextInput="DefenseDurNum"
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Номер в клубе" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White"  Margin="0,0,0,3"/>
 
-                    <TextBox x:Name="textBox_growth" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="11" TextAlignment="Left" 
+                        <TextBox x:Name="textBox_growth" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="11" TextAlignment="Left" PreviewTextInput="DefenseDurNum"
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Рост" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White"  Margin="0,0,0,3"/>
 
-                    <TextBox x:Name="textBox_weight" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                     FontSize="11" TextAlignment="Left" 
+                        <TextBox x:Name="textBox_weight" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="11" TextAlignment="Left" PreviewTextInput="DefenseDurNum"
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Вес" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White"  Margin="0,0,0,3"/>
 
-                    <ComboBox
+                        <ComboBox
                      x:Name="WorkingLeg_ComboBox" Margin="0,0,0,5" materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
                      Style="{StaticResource MaterialDesignFilledComboBox}"
                      IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
                      materialDesign:HintAssist.Hint="Рабочая нога"
                      FontFamily="/dbKP_football;component/Resources/#Champions" FontSize="11" Background="White" Foreground="DarkBlue" >
-                        <ComboBoxItem Content="R" />
-                        <ComboBoxItem Content="L" />
-                        <ComboBoxItem Content="Both" >
-                        </ComboBoxItem>
-                    </ComboBox>
+                            <ComboBoxItem Content="R" />
+                            <ComboBoxItem Content="L" />
+                            <ComboBoxItem Content="Both" >
+                            </ComboBoxItem>
+                        </ComboBox>
 
-                    <Button x:Name="TAdd_button2" Margin="0,0,0,3"
+                        <Button x:Name="TAdd_button2" Margin="0,0,0,3"
                     Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonProgressAssist.Value="-1"
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                     materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                     Foreground="White" BorderBrush="White" FontFamily="/dbKP_football;component/Resources/#Champions"
-                    materialDesign:ButtonAssist.CornerRadius="10" FontSize="11" Content="Добавить" Click="TAdd_button2_Click" />
+                    materialDesign:ButtonAssist.CornerRadius="10" FontSize="11" Content="Добавить" Click="FPAdd_button2_Click" />
 
-                    <Button x:Name="TClear_button2"
+                        <Button x:Name="TClear_button2"
                     Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonProgressAssist.Value="-1"
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                     materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                     Foreground="White" BorderBrush="White" FontFamily="/dbKP_football;component/Resources/#Champions"
-                    materialDesign:ButtonAssist.CornerRadius="10"  FontSize="11" Content="Очистить" Click="TClear_button2_Click" />
+                    materialDesign:ButtonAssist.CornerRadius="10"  FontSize="11" Content="Очистить" Click="FPClear_button2_Click" />
 
-                </StackPanel>
-            </Expander>
-            <StackPanel>
-                <DataGrid x:Name="FP_dataGrid" Margin="0,10,15,15" ColumnWidth="*" FontFamily="/dbKP_football;component/Resources/#Champions" 
+                    </StackPanel>
+                </Expander>
+            </Grid>
+            <Grid Grid.Row="0"  Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Expander  Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,15,0"
+                 HorizontalAlignment="Stretch"  Foreground="White" ExpandDirection="Down">
+                            <DockPanel HorizontalAlignment="Left" Margin="0,0,0,5" >
+                     <TextBox KeyDown="textBox_searchFP_KeyDown" Name="textBox_searchFP" Width="400" Height="43" materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
+                     FontSize="14"
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False" Background="White"
+                     materialDesign:HintAssist.Hint="Поиск" FontFamily="/dbKP_football;component/Resources/#Champions" />
+                                <Button x:Name ="FPSearch" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Foreground="White" BorderBrush="White" Margin="10,0,0,0"
+                    FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" 
+                    Content="Поиск" Click="FPSearch_Click" />
+                            </DockPanel>
+                        </Expander>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <DataGrid Height="{Binding ElementName=FP_dataGrid, Path=RowHeight}" x:Name="FP_dataGrid" Margin="0,10,15,15" ColumnWidth="*" IsReadOnly="True" 
+                          FontFamily="/dbKP_football;component/Resources/#Champions" 
                           AutoGenerateColumns="False" Background="White" Foreground="DarkBlue">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Команда"/>
-                        <DataGridTextColumn Header="Фамилия"/>
-                        <DataGridTextColumn Header="Имя"/>
-                        <DataGridTextColumn Header="Гражданство"/>
-                        <DataGridTextColumn Header="Позиция"/>
-                        <DataGridTextColumn Header="Номер"/>
-                        <DataGridTextColumn Header="Рост"/>
-                        <DataGridTextColumn Header="Вес"/>
-                        <DataGridTextColumn Header="Рабочая нога"/>
-                        <DataGridTemplateColumn Header="Действия">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="FTChange_button" Margin="0,0,5,0"
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="name" Header="Имя"/>
+                                <DataGridTextColumn x:Name="surname" Header="Фамилия"/>
+                                <DataGridTextColumn x:Name="birthdate" Header="Дата рождения" />
+                                <DataGridTextColumn x:Name="nation" Header="Гражданство"/>
+                                <DataGridTextColumn x:Name="posit" Header="Позиция" MinWidth="80" MaxWidth="80"/>
+                                <DataGridTextColumn x:Name="number" Header="Номер" MinWidth="80" MaxWidth="80"/>
+                                <DataGridTextColumn x:Name="grow" Header="Рост (см.)" MinWidth="85" MaxWidth="85"/>
+                                <DataGridTextColumn x:Name="weig" Header="Вес (кг.)" MinWidth="80" MaxWidth="80"/>
+                                <DataGridTextColumn x:Name="leg" Header="Рабочая нога" MinWidth="110" MaxWidth="110"/>
+                                <DataGridTemplateColumn Header="Действия" MinWidth="100" MaxWidth="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button x:Name="FTChange_button1" Margin="0,0,5,0" Height="25" Width="25"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"
-                                        Click="FTChange_button_Click"
+                                        Click="FPChange_button1_Click"
                                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                            <materialDesign:PackIcon
+                                                    <materialDesign:PackIcon
                                                 Kind="BorderColor" />
-                                        </Button>
-                                        <Button x:Name="FTDelete_button"
+                                                </Button>
+                                                <Button x:Name="FTDelete_button" Height="25" Width="25"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-                                        Click="FTDelete_button_Click"
+                                        Click="FPDelete_button_Click"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"
                                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
-                                            <materialDesign:PackIcon
+                                                    <materialDesign:PackIcon
                                                 Kind="Delete" />
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
-
-        </DockPanel>
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -4,49 +4,50 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:dbKP_football"
         mc:Ignorable="d"
         Title="Изменение стадиона" Height="400" Width="220" MinWidth="220" MinHeight="400" Cursor="Hand"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Resources/I_Changed.png">
     <Window.Background>
         <ImageBrush ImageSource="Resources/F_mainWindow.jpg"/>
     </Window.Background>
     <Grid Height="400" Width="200">
-        <StackPanel Margin="0,20,0,0" Width="160" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <StackPanel Margin="0,20,0,0" Width="180" HorizontalAlignment="Center" VerticalAlignment="Top">
 
             <TextBox x:Name="textBox_UPnameStadium" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                       FontSize="16" TextAlignment="Left" 
                       Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                      SpellCheck.IsEnabled="False" 
+                      SpellCheck.IsEnabled="False"
                       materialDesign:HintAssist.Hint="Название стадиона" 
                       Background="White" Margin="0,0,0,10" FontFamily="/dbKP_football;component/Resources/#Champions"/>
 
             <TextBox x:Name="textBox_UPcapacity" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                     SpellCheck.IsEnabled="False" 
+                     SpellCheck.IsEnabled="False"
                      materialDesign:HintAssist.Hint="Вместимость" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,10"/>
 
             <TextBox x:Name="textBox_UPYearOpening" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                     SpellCheck.IsEnabled="False" MaxLength="4"
+                     SpellCheck.IsEnabled="False"
                      materialDesign:HintAssist.Hint="Год открытия" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,10"/>
 
             <TextBox x:Name="textBox_UPLocationCity" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
-                     SpellCheck.IsEnabled="False" 
+                     SpellCheck.IsEnabled="False"
                      materialDesign:HintAssist.Hint="Город расположения" FontFamily="/dbKP_football;component/Resources/#Champions" Margin="0,0,0,20" Background="White"/>
 
-            <Button x:Name="SChange_button2" Margin="0,0,0,10"
+            <Button x:Name="SChange_button2" Click="SChange_button2_Click" Margin="0,0,0,10"
                     Style="{StaticResource MaterialDesignOutlinedButton}"
                     materialDesign:ButtonProgressAssist.Value="-1"
                     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                     materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                    Foreground="White" BorderBrush="White" FontFamily="/dbKP_football;component/Resources/#Champions"
-                    materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Изменить" Click="SChange_button2_Click"  />
+                    Width="120" Height="30"
+                    Foreground="DarkBlue" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5"  FontSize="16" Content="Изменить" 
+                    Background="White" BorderBrush="DarkBlue" />
 
         </StackPanel>
     </Grid>

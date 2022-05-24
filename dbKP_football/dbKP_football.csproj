@@ -54,6 +54,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -81,12 +82,18 @@
     <Compile Include="Coaches.xaml.cs">
       <DependentUpon>Coaches.xaml</DependentUpon>
     </Compile>
+    <Compile Include="C_Changed.xaml.cs">
+      <DependentUpon>C_Changed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="footplayers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="FootPlayers.xaml.cs">
       <DependentUpon>FootPlayers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FP_Changed.xaml.cs">
+      <DependentUpon>FP_Changed.xaml</DependentUpon>
     </Compile>
     <Compile Include="leagues.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -121,6 +128,9 @@
     <Compile Include="Teams.xaml.cs">
       <DependentUpon>Teams.xaml</DependentUpon>
     </Compile>
+    <Compile Include="T_Changed.xaml.cs">
+      <DependentUpon>T_Changed.xaml</DependentUpon>
+    </Compile>
     <Page Include="AboutTheProgramm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,7 +139,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="C_Changed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FootPlayers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FP_Changed.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Teams.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="T_Changed.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,6 +245,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\I_Changed.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -233,7 +258,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\I_Changed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />

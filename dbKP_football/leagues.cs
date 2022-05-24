@@ -18,7 +18,6 @@ namespace dbKP_football
         public leagues()
         {
             this.coaches = new HashSet<coaches>();
-            this.footplayers = new HashSet<footplayers>();
             this.stadiums = new HashSet<stadiums>();
             this.teams = new HashSet<teams>();
         }
@@ -29,8 +28,6 @@ namespace dbKP_football
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<coaches> coaches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<footplayers> footplayers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<stadiums> stadiums { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

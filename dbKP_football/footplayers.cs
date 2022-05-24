@@ -25,9 +25,7 @@ namespace dbKP_football
         public double FP_GROWTH { get; set; }
         public double FP_WEIGHT { get; set; }
         public string FP_WORKINGLEG { get; set; }
-        public int L_ID { get; set; }
     
         public virtual teams teams { get; set; }
-        public virtual leagues leagues { get; set; }
     }
 }

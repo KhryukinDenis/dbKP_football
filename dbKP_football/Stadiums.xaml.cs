@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.SqlClient;
-using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace dbKP_football
 {
@@ -33,9 +35,8 @@ namespace dbKP_football
                 S_LOCATIONCITY = textBox_LocationCity.Text,
                 L_ID = Data.League_Id
             };
-            if (!db.stadiums.Any(u => u.S_NAME == STADIUMS.S_NAME))
-                db.stadiums.Add(STADIUMS);
 
+            db.stadiums.Add(STADIUMS);
             db.SaveChanges();
             Clear();
             refresh();
@@ -76,6 +77,22 @@ namespace dbKP_football
             refresh();
         }
 
+        private void SSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                S_dataGrid.Items.Clear();
+                foreach (var i in Data.SearchInStadiums(db, textBox_searchS.Text))
+                {
+                    S_dataGrid.Items.Add(i);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void refresh()
         {
             S_dataGrid.Items.Clear();
@@ -83,6 +100,43 @@ namespace dbKP_football
             foreach (var i in db.stadiums.SqlQuery("select * from stadiums where L_ID = @l_id",l_id))
                 S_dataGrid.Items.Add(i);
             S_dataGrid.Items.Refresh();
+        }
+
+        private void DefenseDurNum(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DefenseDurRusLet(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^а-я]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DefenseDurEngLet(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-z]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void textBox_searchS_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                try
+                {
+                    S_dataGrid.Items.Clear();
+                    foreach (var i in Data.SearchInStadiums(db, textBox_searchS.Text))
+                    {
+                        S_dataGrid.Items.Add(i);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }

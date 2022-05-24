@@ -1,10 +1,5 @@
-﻿using System.ComponentModel;
-using System.Data.Entity;
-using System.Runtime.CompilerServices;
+﻿using System.Data.Entity;
 using System.Windows;
-using System.Collections;
-using System;
-using System.Collections.ObjectModel;
 
 namespace dbKP_football
 {
@@ -24,7 +19,6 @@ namespace dbKP_football
         }
         private static db_KP_FootballEntities db = new db_KP_FootballEntities();
         
-
         private void Teams_buttonClick(object sender, RoutedEventArgs e)
         {
             if (League_ComboBox.SelectedItem == null)
@@ -32,29 +26,20 @@ namespace dbKP_football
             else
             {
                 var teams = new Teams();
+                teams.Owner = this;
                 teams.Show();
             }
 
         }
 
-        private void Players_buttonClick(object sender, RoutedEventArgs e)
-        {
-            if (League_ComboBox.SelectedItem == null)
-                MessageBox.Show("Выберите лигу!");
-            else
-            {
-                var footPlayers = new FootPlayers();
-                footPlayers.Show();
-            }
-        }
-
         private void Stadiums_buttonClick(object sender, RoutedEventArgs e)
         {
             if (League_ComboBox.SelectedItem == null)
-                MessageBox.Show("Выберите лигу!");
+                MessageBox.Show("Выберите лигу!", "Ошибка");
             else
             {
                 var stadiums = new Stadiums();
+                stadiums.Owner = this;
                 stadiums.Show();
             }
         }
@@ -62,10 +47,11 @@ namespace dbKP_football
         private void Coaches_buttonClick(object sender, RoutedEventArgs e)
         {
             if (League_ComboBox.SelectedItem == null)
-                MessageBox.Show("Выберите лигу!");
+                MessageBox.Show("Выберите лигу!", "Ошибка");
             else
             {
                 var coaches = new Coaches();
+                coaches.Owner = this;
                 coaches.Show();
             }
         }
@@ -73,6 +59,7 @@ namespace dbKP_football
         private void Aboat_buttonClick(object sender, RoutedEventArgs e)
         { 
             var about = new AboutTheProgramm();
+            about.Owner = this;
             about.Show();
         }
 

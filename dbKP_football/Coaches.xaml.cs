@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.SqlClient;
-using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace dbKP_football
 {
@@ -35,6 +36,7 @@ namespace dbKP_football
                 L_ID = Data.League_Id
             };
 
+            db.coaches.Add(COACHES);
             db.SaveChanges();
             Clear();
             refresh();
@@ -55,7 +57,16 @@ namespace dbKP_football
 
         private void CChange_button1_Click(object sender, RoutedEventArgs e)
         {
+            var changeCoa = db.coaches.Find((C_dataGrid.SelectedItem as coaches).C_ID);
+            var c_changed = new C_Changed(changeCoa);
+            c_changed.Closing += C_changed_Closing;
+            c_changed.Show();
+        }
 
+        private void C_changed_Closing(object sender, System.EventArgs e)
+        {
+            db.SaveChanges();
+            refresh();
         }
 
         private void CDelete_button_Click(object sender, RoutedEventArgs e)
@@ -66,6 +77,22 @@ namespace dbKP_football
             refresh();
         }
 
+        private void CSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                C_dataGrid.Items.Clear();
+                foreach (var i in Data.SearchInCoaches(db, textBox_searchC.Text))
+                {
+                    C_dataGrid.Items.Add(i);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void refresh()
         {
             C_dataGrid.Items.Clear();
@@ -73,6 +100,37 @@ namespace dbKP_football
             foreach (var i in db.coaches.SqlQuery("select * from coaches where L_ID = @l_id", l_id))
             C_dataGrid.Items.Add(i);
             C_dataGrid.Items.Refresh();
+        }
+
+        private void DefenseDurRusLet(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^а-я]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DefenseDurDate(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9,.]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void textBox_searchC_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                try
+                {
+                    C_dataGrid.Items.Clear();
+                    foreach (var i in Data.SearchInCoaches(db, textBox_searchC.Text))
+                    {
+                        C_dataGrid.Items.Add(i);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }

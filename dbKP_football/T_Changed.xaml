@@ -1,0 +1,74 @@
+﻿<Window x:Class="dbKP_football.T_Changed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Изменение команды" Height="440" Width="220" MinWidth="220" MinHeight="440" Cursor="Hand"  ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Resources/I_Changed.png">
+            <Window.Background>
+                <ImageBrush ImageSource="Resources/F_mainWindow.jpg"/>
+            </Window.Background>
+    <Grid Height="440" Width="200">
+        <StackPanel Margin="0,10,0,0" Width="180"  HorizontalAlignment="Center" VerticalAlignment="Top">
+
+            <TextBox x:Name="textBox_UPnameTeam" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                      FontSize="16" TextAlignment="Left" 
+                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                      SpellCheck.IsEnabled="False"
+                      materialDesign:HintAssist.Hint="Название команды" 
+                      Background="White" FontFamily="/dbKP_football;component/Resources/#Champions"/>
+
+            <ComboBox
+                     x:Name="UPTournier_ComboBox" Margin="0,8" materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
+                     Style="{StaticResource MaterialDesignFilledComboBox}"
+                     IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
+                     materialDesign:HintAssist.Hint="Турнир"
+                     FontFamily="/dbKP_football;component/Resources/#Champions" FontSize="16" Background="White" Foreground="DarkBlue" >
+                <ComboBoxItem Content="Лига Чемпионов" />
+                <ComboBoxItem Content="Лига Европы" />
+                <ComboBoxItem Content="Лига Конференций" >
+                </ComboBoxItem>
+            </ComboBox>
+
+            <TextBox x:Name="textBox_UPquaFootPlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="16" TextAlignment="Left" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False" 
+                     materialDesign:HintAssist.Hint="Кол-во футболистов" FontFamily="/dbKP_football;component/Resources/#Champions"
+                     Background="White" Margin="0,0,0,8"/>
+
+            <TextBox x:Name="textBox_UPYearOfFound" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="16" TextAlignment="Left" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False"  
+                     materialDesign:HintAssist.Hint="Год основания" FontFamily="/dbKP_football;component/Resources/#Champions"
+                     Background="White" Margin="0,0,0,8"/>
+
+            <TextBox x:Name="textBox_UPstadiumID" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="16" TextAlignment="Left" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False"
+                     materialDesign:HintAssist.Hint="Код стадиона" FontFamily="/dbKP_football;component/Resources/#Champions"
+                     Background="White" Margin="0,0,0,8" />
+
+            <TextBox x:Name="textBox_UPcoachID" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                     FontSize="16" TextAlignment="Left" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False" 
+                     materialDesign:HintAssist.Hint="Код главного тренера" FontFamily="/dbKP_football;component/Resources/#Champions"
+                     Background="White"  Margin="0,0,0,16"/>
+
+            <Button x:Name="TChange_button2" Click="TChange_button2_Click" Margin="0,0,0,8"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Width="120" Height="30"
+                    Foreground="DarkBlue" FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="5"  FontSize="16" Content="Изменить" 
+                    Background="White" BorderBrush="DarkBlue" />
+
+        </StackPanel>
+    </Grid>
+</Window>

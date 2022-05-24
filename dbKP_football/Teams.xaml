@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:dbKP_football"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Команды" Height="540" Width="960" WindowStartupLocation="CenterScreen" MinWidth="960" MinHeight="540" Icon="Resources/I_teams.png">
@@ -16,7 +15,7 @@
                 <StackPanel Margin="10,10,0,0" Width="200"  HorizontalAlignment="Left" VerticalAlignment="Top">
 
                     <TextBox x:Name="textBox_nameTeam" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
-                      FontSize="16" TextAlignment="Left" 
+                      FontSize="16" TextAlignment="Left" PreviewTextInput="DefenseDurRusLet"
                       Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                       SpellCheck.IsEnabled="False" 
                       materialDesign:HintAssist.Hint="Название команды" 
@@ -34,28 +33,32 @@
                         </ComboBoxItem>
                     </ComboBox>
 
-                    <TextBox x:Name="textBox_quaFootPlayers" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                    <TextBox x:Name="textBox_quaFootPlayers" PreviewTextInput="DefenseDurNum"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Кол-во футболистов" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,8"/>
 
-                    <TextBox x:Name="textBox_YearOfFound" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                    <TextBox x:Name="textBox_YearOfFound" PreviewTextInput="DefenseDurNum"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Год основания" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,8"/>
 
-                    <TextBox x:Name="textBox_stadiumID" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                    <TextBox  x:Name="textBox_stadiumID" PreviewTextInput="DefenseDurNum"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
                      materialDesign:HintAssist.Hint="Код стадиона" FontFamily="/dbKP_football;component/Resources/#Champions"
                      Background="White" Margin="0,0,0,8" />
 
-                    <TextBox x:Name="textBox_coachID" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
+                    <TextBox x:Name="textBox_coachID" PreviewTextInput="DefenseDurNum"
+                     materialDesign:TextFieldAssist.TextFieldCornerRadius="5" 
                      FontSize="16" TextAlignment="Left" 
                      Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
                      SpellCheck.IsEnabled="False" 
@@ -81,29 +84,57 @@
                 </StackPanel>
             </Expander>
             <StackPanel>
-                <DataGrid x:Name="T_dataGrid" Margin="0,10,15,15" ColumnWidth="*" 
+
+                <Expander Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,15,0"
+                 HorizontalAlignment="Stretch"  Foreground="White" ExpandDirection="Down">
+                    <DockPanel HorizontalAlignment="Left" Margin="0,0,0,5" >
+                        <TextBox KeyDown="textBox_searchT_KeyDown" Name="textBox_searchT" Width="400" Height="43" materialDesign:TextFieldAssist.TextFieldCornerRadius="5"
+                     FontSize="14"
+                     Style="{StaticResource MaterialDesignFilledTextBox}" Foreground="DarkBlue" 
+                     SpellCheck.IsEnabled="False" Background="White"
+                     materialDesign:HintAssist.Hint="Поиск" FontFamily="/dbKP_football;component/Resources/#Champions"/>
+                        <Button x:Name ="TSearch" Style="{StaticResource MaterialDesignOutlinedButton}"
+                    materialDesign:ButtonProgressAssist.Value="-1"
+                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                    Foreground="White" BorderBrush="White" Margin="10,0,0,0"
+                    FontFamily="/dbKP_football;component/Resources/#Champions"
+                    materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" 
+                    Content="Поиск" Click="TSearch_Click" />
+                    </DockPanel>
+                </Expander>
+                <DataGrid x:Name="T_dataGrid" Margin="0,0,15,0" ColumnWidth="*" IsReadOnly="True"
                           AutoGenerateColumns="False" FontFamily="/dbKP_football;component/Resources/#Champions" Background="White" Foreground="DarkBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Лига"/>
-                        <DataGridTextColumn Header="Команда"/>
-                        <DataGridTextColumn Header="Турнир"/>
-                        <DataGridTextColumn Header="Кол-во игроков"/>
-                        <DataGridTextColumn Header="Год основания"/>
-                        <DataGridTextColumn Header="Стадион"/>
-                        <DataGridTextColumn Header="Гл. тренер"/>
-                        <DataGridTemplateColumn Header="Действия" >
+                        <DataGridTextColumn x:Name="team" Header="Команда"/>
+                        <DataGridTextColumn x:Name="tourn" Header="Турнир"/>
+                        <DataGridTextColumn x:Name="stad" Header="Стадион"/>
+                        <DataGridTextColumn x:Name="coach" Header="Гл. тренер"/>
+                        <DataGridTemplateColumn x:Name="quafot"  Header="Кол-во игроков" MinWidth="150" MaxWidth="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="quafot1" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                        Click="PlayersClick" Content="{Binding T_QUAFOOTPLAYERS}" Height="25" Width="25"
+                                        ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                                        </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn x:Name="year" Header="Год основания" MinWidth="120" MaxWidth="120"/>
+                        <DataGridTemplateColumn Header="Действия" MinWidth="100" MaxWidth="100" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button x:Name="TChange_button" Margin="0,0,5,0"
+                                        <Button x:Name="TChange_button1" Margin="0,0,5,0" Height="25" Width="25"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"
-                                        Click="TChange_button_Click"
+                                        Click="TChange_button1_Click"
                                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
                                             <materialDesign:PackIcon
                                                 Kind="BorderColor" />
                                         </Button>
-                                        <Button x:Name="TDelete_button"
+                                        <Button x:Name="TDelete_button" Height="25" Width="25"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
                                         Click="TDelete_button_Click"
                                         ToolTip="MaterialDesignFloatingActionMiniDarkButton"
