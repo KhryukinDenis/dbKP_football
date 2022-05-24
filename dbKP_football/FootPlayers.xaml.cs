@@ -127,7 +127,7 @@ namespace dbKP_football
 
         private void DefenseDurRusLet(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^а-я]+");
+            Regex regex = new Regex("[^А-я,-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 

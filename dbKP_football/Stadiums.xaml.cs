@@ -48,11 +48,13 @@ namespace dbKP_football
             textBox_capacity.Clear();
             textBox_YearOpening.Clear();
             textBox_LocationCity.Clear();
+            textBox_searchS.Clear();
         }
 
         private void TClear_button3_Click(object sender, RoutedEventArgs e)
         {
             Clear();
+            refresh();
         }
 
         private void SChange_button1_Click(object sender, RoutedEventArgs e)
@@ -110,7 +112,7 @@ namespace dbKP_football
 
         private void DefenseDurRusLet(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^а-я]+");
+            Regex regex = new Regex("[^А-я]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 

@@ -104,7 +104,8 @@
                     </DockPanel>
                 </Expander>
                 <DataGrid x:Name="T_dataGrid" Margin="0,0,15,0" ColumnWidth="*" IsReadOnly="True"
-                          AutoGenerateColumns="False" FontFamily="/dbKP_football;component/Resources/#Champions" Background="White" Foreground="DarkBlue">
+                          AutoGenerateColumns="False" FontFamily="/dbKP_football;component/Resources/#Champions" 
+                          Background="White" Foreground="DarkBlue" FontSize="16">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="team" Header="Команда"/>
                         <DataGridTextColumn x:Name="tourn" Header="Турнир"/>

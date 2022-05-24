@@ -48,11 +48,13 @@ namespace dbKP_football
             textBox_nameCoaches.Clear();
             textBox_nationalityCoaches.Clear();
             datePicker_dateOfBirthCoaches.SelectedDate = null;
+            textBox_searchC.Clear();
         }
 
         private void TClear_button4_Click(object sender, RoutedEventArgs e)
         {
             Clear();
+            refresh();
         }
 
         private void CChange_button1_Click(object sender, RoutedEventArgs e)
@@ -104,7 +106,7 @@ namespace dbKP_football
 
         private void DefenseDurRusLet(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^а-я]+");
+            Regex regex = new Regex("[^А-я]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
